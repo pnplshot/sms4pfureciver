@@ -10,7 +10,7 @@ public class ReceiveMessageRequest {
     private String date;
     private String source;
     private String destination;
-    private String params;
+    //private String params;
     private String bearerType;
     private String contentType;
     private String content;

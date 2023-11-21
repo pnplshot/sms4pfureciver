@@ -35,7 +35,10 @@ public class ApiController {
 
     @PostMapping("/requests")
     public ResponseEntity<Void> receiveMessage(@RequestBody ReceiveMessageRequest receiveMessageRequest) {
+        System.out.println("Received requests: " + receiveMessageRequest);
+
         answerEntityDatabaseService.save(receiveMessageRequest);
+
 
         // Возвращаем ответ с кодом 204 (No Content)
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -43,7 +46,9 @@ public class ApiController {
 
     @PostMapping("/reports") //DLR
     public ResponseEntity<Void> receiveMessage(@RequestBody SmsReportRequest smsReportRequest) { //DLR
-        smsReportDatabaseService.saveReport(smsReportRequest);
+        System.out.println("Received report: " + smsReportRequest);
+
+        smsReportDatabaseService.save(smsReportRequest);
 
         // Возвращаем ответ с кодом 204 (No Content)
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

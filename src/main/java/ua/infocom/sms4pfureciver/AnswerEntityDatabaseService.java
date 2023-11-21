@@ -26,7 +26,7 @@ public class AnswerEntityDatabaseService {
         entity.setDate(receiveMessageRequest.getDate());
         entity.setSource(receiveMessageRequest.getSource());
         entity.setDestination(receiveMessageRequest.getDestination());
-        entity.setParams(receiveMessageRequest.getParams());
+        //entity.setParams(receiveMessageRequest.getParams());
         entity.setBearerType(receiveMessageRequest.getBearerType());
         entity.setContentType(receiveMessageRequest.getContentType());
         entity.setContent(receiveMessageRequest.getContent());

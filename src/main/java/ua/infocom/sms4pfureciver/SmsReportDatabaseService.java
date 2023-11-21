@@ -16,14 +16,29 @@ public class SmsReportDatabaseService {
         this.smsRepository = smsRepository;
     }
 
+    public void save(SmsReportRequest smsReportRequest) {
+        Sms sms = convertToSMS(smsReportRequest);
+        smsRepository.save(sms);
+    }
+
 
     public void saveReport(SmsReportRequest smsReportRequest) {
         Optional<Sms> smsOptional = smsRepository.findByMsgId(smsReportRequest.getMid());
 
         smsOptional.ifPresent(sms -> {
-            sms.setRecived(new Timestamp(Long.parseLong(smsReportRequest.getDate())));
+            sms.setRecived(smsReportRequest.getDate());
             sms.setStatus(smsReportRequest.getStatus());
             smsRepository.save(sms);
         });
+    }
+
+    private Sms convertToSMS(SmsReportRequest smsReportRequest) {
+        Sms sms = new Sms();
+
+        sms.setMsgId(smsReportRequest.getMid());
+        sms.setRecived(smsReportRequest.getDate());
+        sms.setStatus(smsReportRequest.getStatus());
+
+        return sms;
     }
 }
